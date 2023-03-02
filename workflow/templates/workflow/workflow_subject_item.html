@@ -1,0 +1,138 @@
+{% extends 'workflow/workflow_base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'workflow/css/subject_item.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="card-info">
+    <div class="subject-item-name">
+        <h1 class="h1-text-item">{{ subject.title }}</h1>
+    </div>
+    <div class="subject-name mgb80">
+        <h1 class="h1-text">Предмет</h1>
+        <div class="mid-line"></div>
+        <p class="category" id="category-name">{{ subject.category }}</p>
+    </div>
+    <div class="subject-item-theme mgb80">
+        <h1 class="h1-text">Тема</h1>
+        <div class="mid-line"></div>
+        <p class="category" id="theme">
+            {% if subject.theme == "" %}-------------------{% else %}{{ subject.theme }}{% endif %}
+        </p>
+    </div>
+    <div class="subject-item-file ">
+        <embed src="{% static 'workflow/documents' %}{{ subject.pdf_file.url }}/#zoom=72" class="subject-item-file-embed file-resolution-long" type="application/pdf"> 
+        <br>
+    </div>
+    <div class="subject-item-note mgb80">
+        <h1 class="h1-text">Примечание</h1>
+        <div class="mid-line"></div>
+        <p class="category" id="note">{% if subject.note == "" %}-------------------{% else %}{{ subject.note }}{% endif %}</p>
+    </div>
+    <div class="subject-item-button" id="subject-item-file">
+        <a href="{% static 'workflow/documents' %}{{ subject.docx_file.url }}" download="" id="subject-item-file-a">
+            <img src="{% static 'workflow/img/general/buttons/download_file-button.png' %}" alt="download_file-button" class="image-button">
+        </a>
+    </div>
+    {% if subject.author == request.user.username %}
+    <div class="subject-item-button" id="subject-item-edit">
+        <a href="#">
+            <img src="{% static 'workflow/img/general/buttons/edit_subject-button.png' %}" alt="edit_subject-button" class="image-button">
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="add-task-form display-none element-hidden">
+    <form id="add-task" method="POST" enctype="multipart/form-data" style="width: 300px;">
+        {% csrf_token %}
+        <div class="all-form">
+            <img src="{% static 'workflow/img/general/form-close.png' %}" alt="form-close" id="form-close" style="margin-left: 280px;">
+            <span class="h1-div">
+                <h1 class="h1-text-form">Редактирование<br>Работы</h1>
+            </span>
+            <div class="input" id="item-name">
+                <input class="item-input" id="name" name="title" type="text" placeholder="Название работы" value="{{ subject.title }}">
+            </div>
+            <div class="input" id="item-theme">
+                <input type="text" class="item-input" name="theme" id="theme" placeholder="Тема работы" value="{{ subject.theme }}">
+            </div>
+            <div class="input" id="item-category" style="margin-top: 25px;">
+                <select name="category-item" id="category">
+                    {% for item in category %}
+                    <option value="{{ item.title }}" name="category" id="option-select">{{ item.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input" id="item-memo">
+                <input type="text" class="item-input" name="note" placeholder="Примечание" value="{{ subject.note }}">
+            </div>
+            <div id="upload-file">
+                <input type="file" name="file" id="input-file">
+                <label for="input-file">
+                    <span>
+                        <img src="{% static 'workflow/img/general/upload-button.png' %}" alt="upload-button" id="img-upload-button" >
+                    </span>
+                </label>
+                {% if file_error %}
+                    <h4>{{ file_error }}</h4>
+                {% endif %}
+            </div>
+            <div class="sumbit-button">
+                <button type="submit" class="submit-button">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% if error %}
+        <div class="form-error">
+            <img src="{% static 'workflow/img/general/form-close.png' %}" class="close-button3" alt="">
+            <h1 class="form-error-text">{{ error }}</h1>
+        </div>
+{% endif %}
+<!-- <form method="POST" enctype="multipart/form-data" style="position: absolute; right: 3%; top: 0%;">
+    {% csrf_token %}
+    <div class="all-form">
+        <span class="h1-div">
+            <h1 class="h1-text">Редактирование Работы</h1>
+        </span>
+        <div class="input" id="item-name">
+            <input class="item-input" id="name" value="{{ subject.title }}" name="title" type="text" placeholder="Название работы">
+        </div>
+        <div class="input" id="item-theme">
+            <input type="text" class="item-input" value="{{ subject.theme }}" name="theme" id="theme" placeholder="Тема работы">
+        </div>
+        <div class="input" id="item-category">
+            <select name="category-item" id="category">
+
+                {% for item in category %}
+                    {% if subject.category == item %}
+                        <option value="{{ item.title }}" selected name="category">{{ item.title }}</option>
+                    {% else %}
+                        <option value="{{ item.title }}" name="category">{{ item.title }}</option>
+                    {% endif %}
+                {% endfor %}
+
+            </select>
+        </div>
+        <div class="input" id="item-memo">
+            <textarea name="textarea" name="note"  id="memo-textarea" cols="40" rows="5" placeholder="Примечание">{{ subject.note }}</textarea>
+        </div>
+        <div id="upload-file">
+            <input type="file" name="file">
+        </div>
+        <div class="sumbit-button">
+            <button type="submit" class="submit-button">Добавить</button>
+        </div>
+    </div>
+</form> -->
+
+<script src="{% static 'workflow/js/p5.min.js' %}"></script>
+<script src="{% static 'workflow/js/vanta.topology.min.js' %}"></script>
+<script src="{% static 'workflow/js/workflow_background_develop.js' %}"></script>
+<script src="{% static 'workflow/js/subject_item.js' %}"></script>
+
+{% endblock %}

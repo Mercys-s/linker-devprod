@@ -1,0 +1,96 @@
+{% extends 'workflow/workflow_base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'workflow/css/category_page.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div id="mid-content">
+        <div class="card-set" >
+            {% for category in categories %}
+                <div class="category-card">
+                    <img class="card-image" src="{{ category.image.url }}" alt="">
+                        <div class="card-description">
+                            <span class="category-title">{{ category.title }}</span>
+                            <div class="category-line"></div>
+                            <span class="category-full-title">{{ category.full_title }}</span>
+                        </div>
+                    <div class="subject-item">
+                        {% for item in subject_items %}
+                            {% if item.category_id == category.id %}
+                                <span class="subject-title">
+                                    <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                                </span>
+                                <div class="subject-line"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <div class="add-task-form element-hidden">
+            <form id="add-task" method="POST" enctype="multipart/form-data" style="width: 300px;">
+                {% csrf_token %}
+                <div class="all-form">
+                    <img src="{% static 'workflow/img/general/form-close.png' %}" alt="form-close" id="form-close" style="margin-left: 280px;">
+                    <span class="h1-div">
+                        <h1 class="h1-text">Добавление<br>Работы</h1>
+                    </span>
+                    <div class="input" id="item-name">
+                        <input class="item-input" id="name" name="title" type="text" placeholder="Название работы">
+                    </div>
+                    <div class="input" id="item-theme">
+                        <input type="text" class="item-input" name="theme" id="theme" placeholder="Тема работы">
+                    </div>
+                    <div class="input" id="item-category" style="margin-top: 25px;">
+                        <select name="category-item" id="category">
+                            {% for item in categories %}
+                            <option value="{{ item.title }}" name="category" id="option-select">{{ item.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input" id="item-memo">
+                        <input type="text" class="item-input" name="note" placeholder="Примечание">
+                    </div>
+                    <div id="upload-file">
+                        <input type="file" name="file" id="input-file">
+                        <label for="input-file">
+                            <span>
+                                <img src="{% static 'workflow/img/general/upload-button.png' %}" alt="upload-button" id="img-upload-button" >
+                            </span>
+                        </label>
+                        {% if file_error %}
+                            <h4>{{ file_error }}</h4>
+                        {% endif %}
+                    </div>
+                    <div class="sumbit-button">
+                        <button type="submit" class="submit-button">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+        </div> 
+    </div>
+    {% if error %}
+        <div class="form-error">
+            <img src="{% static 'workflow/img/general/form-close.png' %}" class="close-button3" alt="">
+            <h1 class="form-error-text">{{ error }}</h1>
+        </div>
+    {% endif %}
+    <div class="add-task-text">< Добавить работу ></div>
+    <footer class="footer">
+        <div class="footer-line"></div>
+    </footer>    
+
+
+        <script src="{% static 'workflow/js/p5.min.js' %}"></script>
+        <script src="{% static 'workflow/js/vanta.topology.min.js' %}"></script>
+        <script src="{% static 'workflow/js/workflow_background_develop.js' %}"></script>
+        <script src="{% static 'workflow/js/main.js' %}"></script>
+{% endblock %}

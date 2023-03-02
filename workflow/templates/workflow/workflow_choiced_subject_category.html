@@ -1,0 +1,22 @@
+{% extends 'workflow/workflow_base.html' %}
+
+{% block content %} 
+    <h1 class="h1-category">
+        {{ category.title }}
+    </h1> 
+    <div class="subjects-list">
+        {% for item in subject %}
+        <div class="subject-card">
+            <h2>
+                <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                
+            </h2>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="subject-add">
+        <a href="{% url 'add_task' %}">
+            <button>Добавить Работу</button>
+        </a>
+    </div>
+{% endblock %}

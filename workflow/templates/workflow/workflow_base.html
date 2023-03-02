@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'workflow/css/base.css' %}">
+    {% block css %}
+    {% endblock %}
+    <title>Workflow</title>
+</head>
+<body>
+    <div id = "page-preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
+    <div class="content-container" id="content-container">
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <img src="{% static 'workflow/img/general/LOGO.png' %}" alt="logo">
+                </div>
+                <nav role="navigation">
+                    <ul class="main-menu">
+                        <li><a href="{% url 'home' %}" id="glavnaya" class="nav-bar-el">Главная</a></li>
+                        <li><a href="#" id="library" class="nav-bar-el">Библеотека</a></li>
+                        <li><a href="#" id="contacts"class="nav-bar-el">Контакты</a></li>   
+                    </ul>
+                </nav>
+                <li class="user">
+                    <a href="#" class="user-name nav-bar-el">
+                        <img class="user-logo" src="{% static 'workflow/img/general/user_logo.png' %}" alt="userlogo">{{ user.username }}
+                    </a>
+                </li>
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{% static 'workflow/js/base.js' %}"></script>
+</body>
+</html>

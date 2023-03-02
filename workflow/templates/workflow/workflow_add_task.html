@@ -1,0 +1,45 @@
+{% extends 'workflow/workflow_base.html' %}
+
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'workflow/css/add_task.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="all-form">
+        <span class="h1-div">
+            <h1 class="h1-text">Добавление Работы</h1>
+        </span>
+        <div class="input" id="item-name">
+            <input class="item-input" id="name" name="title" type="text" placeholder="Название работы">
+        </div>
+        <div class="input" id="item-theme">
+            <input type="text" class="item-input" name="theme" id="theme" placeholder="Тема работы">
+        </div>
+        <div class="input" id="item-category">
+            <select name="category-item" id="category">
+                {% for item in category %}
+                <option value="{{ item.title }}" name="category">{{ item.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input" id="item-memo">
+            <textarea name="textarea" name="note" id="memo-textarea" cols="40" rows="5" placeholder="Примечание"></textarea>
+        </div>
+        <div id="upload-file">
+            <input type="file" name="file">
+            <!--  Для стилизации использовать label  -->
+        </div>
+        <div class="sumbit-button">
+            <button type="submit" class="submit-button">Добавить</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'linker/css/main.css' %}">
+    <title>Главная</title>
+</head>
+<body>
+    <div id="page-preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
+    <div class="content-container" id="content-container">
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <img src="{% static 'linker/img/general/LOGO.png' %}" alt="logo">
+                </div>
+                <nav role="navigation">
+                    <ul class="main-menu">
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'subject_category' %}" id="workflow" class="nav-bar-el">Рабочее пространство</a></li>
+                            <li><a href="#" id="library" class="nav-bar-el">Библеотека</a></li>
+                            <li><a href="#" id="contacts"class="nav-bar-el">Контакты</a></li>   
+                        {% else %}
+                            <li><a href="#" id="workflow" class="nav-bar-el">Рабочее пространство</a></li>
+                            <li><a href="#" id="library" class="nav-bar-el">Библеотека</a></li>
+                            <li><a href="#" id="contacts"class="nav-bar-el">Контакты</a></li>  
+                        {% endif %}
+                    </ul>
+                </nav>
+                <li class="user">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="user-logout">
+                        <img src="{% static 'linker/img/general/logout_icon.png' %}" alt="">
+                    </a>
+                    <a href="#" class="user-name nav-bar-el">
+                        <img class="user-logo" src="{% static 'linker/img/general/user_logo.png' %}" alt="userlogo">{{ user.username }}
+                    </a>
+                    {% else %}
+                    <a href="#" class="user-name nav-bar-el">
+                        <img class="user-logo" src="{% static 'linker/img/general/user_logo.png' %}" alt="userlogo">Регистрация / Авторизация
+                    </a>
+                    {% endif %}
+                </li>
+            </div>
+        </header>
+        <div class="mid-content">
+            <div class="in-develop">
+                <h1 id="in-develop-h1">ГЛАВНАЯ В РАЗРАБОТКЕ</h1>
+            </div>
+        </div>
+        <div class="div-like-a-lamp">
+            <button class="like-a-lamp"></button>
+        </div>
+        <div class="background-blackout opacity-none"></div>
+        <div class="login-form element-hidden">
+            <div class="left-panel">
+                <form id="login" method="POST" action="{% url 'login' %}" enctype="multipart/form-data" style="width: 300px; margin-left: 35px;">
+                    {% csrf_token %}
+                    <div class="all-form">
+                        <img src="{% static 'workflow/img/general/form-close.png' %}" alt="form-close" class="form-close">
+                        <span class="h1-div">
+                            <h1 class="h1-text">Авторизация</h1>
+                        </span>
+                        <div class="input" id="item-login">
+                            <input class="item-input" id="login-input" name="username" type="text" placeholder="Логин">
+                        </div>
+                        <div class="input" id="item-password">
+                            <input type="password" class="item-input" name="password" id="password-input" placeholder="Пароль">
+                        </div>
+                        <div class="input" id="item-email">
+                            <input type="text" class="item-input" name="email" placeholder="Email (Необязательно)">
+                        </div>
+                        <div class="sumbit-button-login">
+                            <button type="submit" class="submit-button">Войти</button>
+                        </div>
+                        <h3 class="h3-text">Нет аккаунта?</h3>
+                    </div>
+                </form>
+            </div>
+            <div class="right-panel">
+                <img src="{% static 'linker/img/general/auth/auth_image.png' %}" alt="auth_image" height="640" width="370">
+            </div>
+        </div> 
+        <div class="register-form element-hidden">
+            <div class="left-panel">
+                <form id="register" method="POST" action="{% url 'signup' %}" enctype="multipart/form-data" style="width: 300px; margin-left: 35px;">
+                    {% csrf_token %}
+                    <div class="all-form">
+                        <img src="{% static 'linker/img/general/form-close.png' %}" alt="form-close" class="form-close2">
+                        <span class="h1-div">
+                            <h1 class="h1-text-reg">Регистрация</h1>
+                        </span>
+                        <div class="input" id="item-login-reg">
+                            <input class="item-input" id="login-input" name="username" type="text" placeholder="Логин">
+                        </div>
+                        <div class="input" id="item-password">
+                            <input type="password" class="item-input" name="password1" id="password-input" placeholder="Пароль">
+                        </div>
+                        <div class="input" id="item-password2">
+                            <input type="password" class="item-input" name="password2" placeholder="Повтори пароль">
+                        </div>
+                        <div class="input" id="item-email">
+                            <input type="text" class="item-input" name="group-code" placeholder="Код группы">
+                        </div>
+                        <div class="sumbit-button-register">
+                            <button type="submit" class="submit-button">Зарегистрироваться</button>
+                        </div>
+                        <h3 class="h3-text-reg">Уже есть аккаунт?</h3>
+                    </div>
+                </form>
+            </div>
+            <div class="right-panel">
+                <img src="{% static 'linker/img/general/auth/register_image.png' %}" alt="auth_image" height="640" width="370">
+            </div>
+        </div> 
+        {% if error %}
+        <div class="form-error">
+            <img src="{% static 'workflow/img/general/form-close.png' %}" class="close-button3" alt="">
+            <h1 class="form-error-text">{{ error }}</h1>
+        </div>
+        {% endif %}
+    </div>
+    <script src="{% static 'linker/js/main.js' %}"></script>
+    <script src="{% static 'linker/js/p5.min.js' %}"></script>
+    <script src="{% static 'linker/js/vanta.topology.min.js' %}"></script>
+    <script src="{% static 'linker/js/linker_background_develop.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+<!-- <h1>Main page</h1>
+
+{% if user.is_authenticated %}
+<h2>{{ user.username }}</h2>
+
+
+<div>
+    <a href="{% url 'subject_category' %}">
+        <button>Workflow</button>
+    </a>
+</div>
+
+{% else %}
+
+
+
+
+<div>
+    <a href="{% url 'signup' %}">
+        <button>Login</button>
+    </a>
+
+</div>
+<div>
+    <a href="{% url 'signup' %}">
+        <button>Sign Up</button>
+    </a>
+</div> -->
+
+
+
+
+{% endif %}
+
+

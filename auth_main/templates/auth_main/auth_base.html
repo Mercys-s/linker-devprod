@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'auth_main/css/auth_design.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c1f6ee62cf.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="all-page" id="all-page">
+            {% if user.is_authenticated %}
+                <div class="username-logged">
+                    <h2 class="user-name">{{ user.username }}</h2>
+                    <h2 class="logout-user">
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </h2>
+                </div>    
+            {% endif %}
+            
+
+
+            {% block content %}
+            {% endblock %}
+            <div class="design-scripts">
+                <script src="{% static 'auth_main/js/three.r134.min.js' %}"></script>
+                <script src="{% static 'auth_main/js/vanta.fog.min.js' %}"></script>
+                <script src="{% static 'auth_main/js/auth_design.js' %}"></script>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

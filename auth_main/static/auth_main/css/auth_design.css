@@ -1,0 +1,239 @@
+/* Расположение элементов */
+
+
+    body {
+        margin: 0 ;
+    }
+
+    .all-page {
+        height: 1007px;
+        
+    }
+
+    .container {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+
+/* Форма */
+    
+    #reg-log-forms {
+        margin-left: 3.5%;
+    }
+
+    .all-form {
+        /* margin-top: 15%; */
+        margin-top: 1%;
+        margin-left: 15%;  
+        /* background-color: rgba(10, 10, 10, 0.801); */
+        width: 20%;
+        padding: 5% 2% 5%;
+        position: absolute;
+        top: 25%;
+    }
+
+    div.email {
+        margin-bottom: 50px;
+    }
+
+    .username {
+        margin-bottom: 50px;
+    }
+
+
+    .password1 {
+        margin-bottom: 50px;
+    }
+
+    .input-box {
+        border: none;
+        background: transparent ;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgb(65, 65, 65);
+        color: white;
+        padding: 15px 0 10px;
+        outline: none;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+        font-weight: 200;
+        
+        transition: all .3s ease;
+    }
+
+    .input-box:hover {
+        transform: scale(1.01);
+    }
+
+    .label-text {
+        display: block;
+    }
+
+    .h1-div {
+        position: relative;
+        bottom: 40px;
+    }
+    
+    .h1-text {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 5px;
+        font-weight: 200;
+    }
+
+    .div-sumbit-button {
+        text-align: center;
+        position: relative;
+        top: 40px;
+        transition: all .6s ease;
+    }
+
+    .submit-button {
+        transition: all .3s ease;
+    }
+
+    .submit-button:hover {
+        transform: scale(1.01);
+    }
+
+    .submit-button {
+        cursor: pointer;
+        padding: 15px 50px 15px;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        background-color: rgba(20, 20, 20, 0.768);
+        
+        letter-spacing: 1px;
+        border-radius: 3px;
+    }
+
+
+
+
+
+/* Nav-bar */
+
+    .nav-h2-content {
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        letter-spacing: 2px;
+        font-size: 20px;
+        position: absolute;
+        margin: 0px 0px 0px;
+        right: 100px;
+        top: 50px;
+        cursor: pointer;
+
+        transition: all .3s ease;
+    }
+
+    .nav-h2-content:hover {
+        transform: scale(1.02);
+        color: rgb(180, 180, 180);
+    }
+
+    .nav-h2-library {
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        letter-spacing: 2px;
+        font-size: 20px;
+        position: absolute;
+        margin: 0px 0px 0px;
+        right: 270px;
+        top: 50px;
+        cursor: pointer;
+
+        transition: all .3s ease;
+    }
+
+    .nav-h2-library:hover {
+        transform: scale(1.02);
+        color: rgb(180, 180, 180);
+    }
+
+    i {
+        color: white;
+        margin-top: 55px;
+        margin-left: 5%;
+        size: fa-2x;
+    }
+
+    .nav-text-login {
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        letter-spacing: 2px;
+        font-size: 20px;
+        position: relative; 
+        margin: 0px 0px 0px;
+        /* right: 100px; */
+        cursor: pointer;
+
+        transition: all .3s ease;
+    }
+
+    .nav-text-login:hover {
+        transform: scale(1.02);
+        color: rgb(180, 180, 180);
+    }
+
+    .nav-tagA-login {
+        text-decoration: none;
+    }
+
+    .text-login {
+       position: relative;
+       right: -10px;
+       margin-left: auto;
+       margin-right: 110px;
+       line-height: 120px;
+       
+    }
+
+    .nav-login {
+        display: flex;
+
+        flex-direction: row;
+    
+        justify-content: flex-start;
+
+        position: relative;
+
+        top: 800px;
+
+        
+    }
+
+    #login-icon {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
+    #i-login {
+        position: relative;
+        bottom: 26px;
+        left: 1700px;
+    }
+
+
+
+/* Изменение цветов элементов */
+
+
+    .label-text {
+        color: white;
+    }
+
+    .h1-text {
+        margin: 0;
+        border: 0;
+        color: white;
+
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.324);
+    }
+
+    

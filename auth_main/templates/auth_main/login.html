@@ -1,0 +1,45 @@
+{% extends 'auth_main/auth_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <! -- NavBar --> 
+        <i class="fa-solid fa-bars"></i>
+        <h2 class="nav-h2-content">Content</h2>
+        <h2 class="nav-h2-library">Libraries</h2>
+
+        <div class="nav-bar">
+            <div class="nav-login">
+                <div class="icon" id="login-icon">
+                    <! -- <i class="fa-regular fa-circle-user fa-lg" id="i-login"></i> --> 
+                </div>
+                <span class="text-login">
+                    <a href="{% url 'signup' %}" class="nav-tagA-login">
+                        <h2 class="nav-text-login">Sign Up</h2>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+    <! -- NavBar --> 
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="all-form" style="margin-top: 50px;">
+            <span class="h1-div">
+                <h1 class="h1-text">LOGIN</h1>
+            </span>
+            <div class="username">
+                <input type="text" name="username" class="input-box" id="username" placeholder="{% if error_user_not_exist %}{{ error_user_not_exist }}{% else %}Username{% endif %}">
+            </div>
+            <div class="password">
+                <input type="password" name="password" class="input-box" id="username" placeholder="Password">
+            </div>
+            <div class="div-sumbit-button">
+                <button type="submit" class="submit-button">Login</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

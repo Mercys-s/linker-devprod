@@ -1,0 +1,17 @@
+{% block navbar %}
+    <h2 class="nav-h2-content">Content</h2>
+    <h2 class="nav-h2-library">Libraries</h2>
+
+    <div class="nav-bar">
+        <div class="nav-login">
+            <div class="icon" id="login-icon">
+                <! -- <i class="fa-regular fa-circle-user fa-lg" id="i-login"></i> --> 
+            </div>
+            <span class="text-login">
+                <a href="{% url 'login' %}" class="nav-tagA-login">
+                    <h2 class="nav-text-login">Login</h2>
+                </a>
+            </span>
+        </div>
+    </div>
+{% endblock %}
