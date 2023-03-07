@@ -4,7 +4,6 @@ import aspose.words as convert
 
 import string , random
 
-from .models import SubjectCategory , SubjectItem
 
 
 

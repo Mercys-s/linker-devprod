@@ -122,17 +122,21 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#MEDIA_URL = 'media/'
-#MEDIA_ROOT = Path (f'{BASE_DIR}/CodesPython/Django/The_Site_Project' , '/media')
-#MEDIA_ROOT = '/CodesPython/Django/The_Site_Project/workflow/media'
-
-
+STATIC_ROOT = Path (BASE_DIR , 'static')
 
 STATICFILES_DIRS = [
     Path (BASE_DIR , 'auth_main/static'),
     Path (BASE_DIR , 'workflow/static'),
     Path (BASE_DIR , 'linker/static'),
 ]
+
+#MEDIA_URL = 'media/'
+#MEDIA_ROOT = Path (f'{BASE_DIR}/CodesPython/Django/The_Site_Project' , '/media')
+#MEDIA_ROOT = '/CodesPython/Django/The_Site_Project/workflow/media'
+
+
+
+
 
 
 # Default primary key field type
